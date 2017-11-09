@@ -1,0 +1,32 @@
+{
+  "name": "js-pattern-match",
+  "version": "1.0.0",
+  "description": "Implement pattern match in JS.",
+  "scripts": {
+    "start": "npm run build && babel *.es6 --out-dir temp && http-server -o",
+    "build": "cross-env NODE_ENV=production babel match.es6 -o dist/match.min.js --source-maps",
+    "test": "babel *.es6 --out-dir temp && node temp/match_test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhengxiaoyao0716/js-pattern-match.git"
+  },
+  "keywords": [
+    "pattern",
+    "match"
+  ],
+  "author": "github.com/zhengxiaoyao0716",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhengxiaoyao0716/js-pattern-match/issues"
+  },
+  "homepage": "https://github.com/zhengxiaoyao0716/js-pattern-match#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-minify": "^0.2.0",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "cross-env": "^5.1.1",
+    "http-server": "^0.10.0"
+  }
+}

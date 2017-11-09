@@ -1,0 +1,16 @@
+<div style="background: #66ccff; color: 99FFFF; padding: 12px; line-hight: 6px;">JS PATTERN MATCH: Implement pattern match in JS.</div>
+<div id="root" style="background: #66ccff; color: white; padding: 12px; line-hight: 6px;"></div>
+<div style="background: #66ccff; color: 99FFFF; padding: 12px; line-hight: 6px;">Open develop tools for more details.</div>
+<script>
+    (function () {
+        var _log = console.log;
+        var _warn = console.warn;
+        function print(raw, isWarn) {
+            return function () { raw.apply(console, arguments); var args = arguments; document.getElementById('root').appendChild((function (p) { p.style.height = '24px'; p.style.margin = 0; isWarn && (p.style.backgroundColor = '#EE0000'); p.innerHTML = Array.prototype.join.call(args, ' '); return p; })(document.createElement('p'))); };
+        }
+        console.log = print(_log);
+        console.warn = print(_warn, true);
+    })();
+</script>
+<script src="/dist/match.min.js"></script>
+<script src="/temp/match_test.js"></script>
