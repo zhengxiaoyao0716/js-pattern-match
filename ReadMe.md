@@ -11,7 +11,7 @@ import match from 'js-pattern-match';
 
 Browser:
 ``` html
-<script src="zhengxiaoyao0716.github.io/js-pattern-match/dist/match.min.js"></script>
+<script src="https://zhengxiaoyao0716.github.io/js-pattern-match/dist/match.min.js"></script>
 ```
 
 Or if you are using es6, you need only add those code, and it will works well:
