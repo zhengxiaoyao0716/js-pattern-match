@@ -1,11 +1,12 @@
 {
   "name": "js-pattern-match",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Implement pattern match in JS.",
   "scripts": {
-    "start": "npm run build && babel *.es6 --out-dir temp && http-server -o",
+    "compile": "babel *.es6 --out-dir lib",
     "build": "cross-env NODE_ENV=production babel match.es6 -o dist/match.min.js --source-maps",
-    "test": "babel *.es6 --out-dir temp && node temp/match_test.js"
+    "start": "npm run compile && npm run build && http-server -o",
+    "test": "npm run compile && node lib/match_test.js"
   },
   "repository": {
     "type": "git",
