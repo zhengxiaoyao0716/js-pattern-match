@@ -1,15 +1,30 @@
-<div style="background: #66ccff; color: 99FFFF; padding: 12px; line-hight: 6px;">JS PATTERN MATCH: Implement pattern match in JS.</div>
-<div id="root" style="background: #66ccff; color: white; padding: 12px; line-hight: 6px;"></div>
-<div style="background: #66ccff; color: 99FFFF; padding: 12px; line-hight: 6px;">Open develop tools for more details.</div>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/styles/vs2015.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/highlight.min.js"></script>
+
+<div style="background: #66ccff; color: 99FFFF; padding: 12px;">JS PATTERN MATCH: Implement pattern match in JS.</div>
+<div style="display: flex;">
+    <div id="result" style="background: #66ccff; color: white; padding: 12px; flex: 1 0 auto; word-break: break-all"></div>
+    <pre style="padding: 0 12px; margin: 0; overflow-x: auto;">
+        <code id="code" class="javascript"></code>
+    </pre>
+</div>
+<div style="background: #66ccff; color: 99FFFF; padding: 12px;">Open develop tools for more details.</div>
+
 <script>
     (function () {
         var _log = console.log;
         var _warn = console.warn;
+        var result = document.querySelector('#result');
         function print(raw, isWarn) {
-            return function () { raw.apply(console, arguments); var args = arguments; document.getElementById('root').appendChild((function (p) { p.style.height = '24px'; p.style.margin = 0; isWarn && (p.style.backgroundColor = '#EE0000'); p.innerHTML = Array.prototype.join.call(args, ' '); return p; })(document.createElement('p'))); };
+            return function () { raw.apply(console, arguments); var args = arguments; result.appendChild((function (p) { p.style.minHeight = '24px'; p.style.margin = 0; isWarn && (p.style.backgroundColor = '#EE0000'); p.innerHTML = Array.prototype.join.call(args, ' '); return p; })(document.createElement('p'))); };
         }
         console.log = print(_log);
         console.warn = print(_warn, true);
+        fetch('./match_test.es6').then(function (r) { return r.text(); }).then(function (text) {
+            var code = document.querySelector('#code');
+            code.innerHTML = text;
+            hljs.highlightBlock(code);
+        });
     })();
 </script>
 <script src="./dist/match.min.js"></script>
