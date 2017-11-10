@@ -137,4 +137,41 @@
     }
 
     console.log('');
+
+    /**
+     * https://github.com/tc39/proposal-pattern-matching#nested-patterns
+     */
+
+    // let node = {
+    //     name: 'If',
+    //     alternate: { name: 'Statement', value: '...' },
+    //     consequent: { name: 'Statement', value: '...' }
+    // };
+
+    // match (node) {
+    //     { name: 'If', alternate }: // if with no else
+    //         match (alternate) {
+    //             // ...
+    //         },
+    //     { name: 'If', consequent }: // if with an else
+    //         match(consequent) {
+    //             // ...
+    //         }
+    // }
+
+    var nestedLog = (0, _match2.default)([[function (node) {
+        return node.name == 'If' && (0, _match2.default)(function (alternate) {
+            return alternate.name;
+        }, [node.alternate]);
+    }, console.log.bind(console, 'matched alternate:')], [function (node) {
+        return node.name == 'If' && (0, _match2.default)(function (consequent) {
+            return consequent.name;
+        }, [node.consequent]);
+    }, console.log.bind(console, 'matched consequent:')]], console.warn.bind(console, '[WARN]'));
+
+    nestedLog({ name: 'If', alternate: { name: 'fin' }, consequent: {} });
+    nestedLog({ name: 'If', alternate: {}, consequent: { name: 'fin' } });
+    nestedLog({ name: 'Else', alternate: {}, consequent: {} });
+
+    console.log('');
 });

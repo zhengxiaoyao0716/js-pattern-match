@@ -78,3 +78,42 @@ for (let args of [
 }
 
 console.log('')
+
+
+/**
+ * https://github.com/tc39/proposal-pattern-matching#nested-patterns
+ */
+
+// let node = {
+//     name: 'If',
+//     alternate: { name: 'Statement', value: '...' },
+//     consequent: { name: 'Statement', value: '...' }
+// };
+
+// match (node) {
+//     { name: 'If', alternate }: // if with no else
+//         match (alternate) {
+//             // ...
+//         },
+//     { name: 'If', consequent }: // if with an else
+//         match(consequent) {
+//             // ...
+//         }
+// }
+
+let nestedLog = match([
+    [
+        node => node.name == 'If' &&
+            match(alternate => alternate.name, [node.alternate]),
+        console.log.bind(console, 'matched alternate:')],
+    [
+        node => node.name == 'If' &&
+            match(consequent => consequent.name, [node.consequent]),
+        console.log.bind(console, 'matched consequent:')],
+], console.warn.bind(console, '[WARN]'));
+
+nestedLog({ name: 'If', alternate: { name: 'fin' }, consequent: {} });
+nestedLog({ name: 'If', alternate: {}, consequent: { name: 'fin' } });
+nestedLog({ name: 'Else', alternate: {}, consequent: {} });
+
+console.log('');
