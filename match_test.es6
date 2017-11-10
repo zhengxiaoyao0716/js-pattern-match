@@ -117,3 +117,13 @@ nestedLog({ name: 'If', alternate: {}, consequent: { name: 'fin' } });
 nestedLog({ name: 'Else', alternate: {}, consequent: {} });
 
 console.log('');
+
+/**
+ * test `this` refer.
+ */
+const testThis = match([
+    [[function (n) { console.log('pattern.n:', this); return Number.isInteger(n); }], function () { console.log('matched:', this); }],
+    [function (...args) { console.log('pattern.args:', this); return args.length > 1; }, () => { }],
+], function () { console.log('else:', this) }).bind('ok');
+testThis(0);
+testThis();

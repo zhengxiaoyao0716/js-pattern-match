@@ -1,6 +1,6 @@
 {
   "name": "js-pattern-match",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Implement pattern match in JS.",
   "scripts": {
     "compile": "babel *.es6 --out-dir lib",
