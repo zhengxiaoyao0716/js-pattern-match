@@ -4,17 +4,18 @@
 ***
 ## Install:
 ### Node
-> [babel-runtime][transform-runtime] is required, or you can consider this way: [simple](#Simple) .
+> Sine v2.0.0, [babel-runtime][transform-runtime] is required, or you can consider use old version (`js-pattern-match@1.5.0`) or this way: [simple](#Simple) .
 ``` javascript
 // npm i js-pattern-match --save-dev
 import match from 'js-pattern-match';
 ```
 
 ### Browser
-> Since some runtimes joined in, the size of `match.min.js` is larger than actual. So if you are working with `babel`, consider this way: [Node](#Node) .
+> Since v2.0.0, some runtimes joined in, the size of `match.min.js` is larger than actual ( [44.1 KB](https://github.com/zhengxiaoyao0716/js-pattern-match/releases/tag/2.0) vs [3.74 KB](https://github.com/zhengxiaoyao0716/js-pattern-match/releases/tag/1.5) ). So if you are working with `babel`, consider this way: [Node](#Node) .
 ``` html
 <script src="https://zhengxiaoyao0716.github.io/js-pattern-match/dist/match.min.js"></script>
 ```
+> Ofcause, You can download it and use it locally: [release page](https://github.com/zhengxiaoyao0716/js-pattern-match/releases) .
 
 ### Simple
 > If you are using ES6 and working with mordern browser, you can just simple to add those code and it will works well:
@@ -70,7 +71,7 @@ let getLength = match([
 ]);
 ```
 
-It looks alike, and if we have some macro or syntactic sugar we can easier to implements it. See [match_test.es6](./match_test.es6) for more details usage.
+It looks alike, and if we have some macro or syntactic sugar we can easier to implements it. See [match_test.js](./src/match_test.js) for more details usage.
 
 ***
 [transform-runtime]: https://babeljs.io/docs/plugins/transform-runtime/

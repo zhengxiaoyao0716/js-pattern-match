@@ -1,6 +1,6 @@
 {
   "name": "js-pattern-match",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Implement pattern match in JS.",
   "scripts": {
     "build": "babel src/match.js -o lib/match.js --source-maps && webpack",
