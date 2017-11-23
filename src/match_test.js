@@ -1,12 +1,15 @@
-import match from './match';
+import match from './../index';
+
+const num = Number.isInteger;
+const str = s => typeof (s) == 'string';
 
 /**
  * Base match.
  */
-console.log(match([Number.isInteger, s => typeof (s) == 'string'], [401, 'please sign in.']));
+console.log(match([num, str], [401, 'please sign in.']));
 console.log(match((...args) => args.length > 2, ['unexpected result.']));
 
-console.log('')
+console.log('');
 
 
 /**
@@ -22,9 +25,9 @@ console.log('')
 
 const handleResp = match([
     [[r => r instanceof Object], json => console.log('success, result:', json)],
-    [[200, s => typeof (s) == 'string'], (code, text) => handleResp(JSON.parse(text))],
-    [[403, s => typeof (s) == 'string'], (_, reason) => console.log('403 Err, reason:', reason)],
-    [[Number.isInteger, s => typeof (s) == 'string'], (code, reason) => console.log('Failed, code:', code, 'reason:', reason)],
+    [[200, str], (code, text) => handleResp(JSON.parse(text))],
+    [[403, str], (_, reason) => console.log('403 Err, reason:', reason)],
+    [[num, str], (code, reason) => console.log('Failed, code:', code, 'reason:', reason)],
     [(...args) => args.length > 2, (...args) => args.forEach((arg) => handleResp(arg))],
 ]);
 
@@ -39,7 +42,7 @@ try {
     console.warn('[WARN]', error);
 };
 
-console.log('')
+console.log('');
 
 
 /**
@@ -56,8 +59,8 @@ console.log('')
 // }
 
 let getLength = match([
-    [[Number.isInteger, Number.isInteger, Number.isInteger], (x, y, z) => Math.sqrt(x ** 2 + y ** 2 + z ** 2)],
-    [[Number.isInteger, Number.isInteger], (x, y) => Math.sqrt(x ** 2 + y ** 2)],
+    [[num, num, num], (x, y, z) => Math.sqrt(x ** 2 + y ** 2 + z ** 2)],
+    [[num, num], (x, y) => Math.sqrt(x ** 2 + y ** 2)],
     [(...args) => args.length > 1, (...vector) => vector.length],
     // [(..._) => true, (...args) => { throw new Error("Unknown vector type: " + String(args)); }]
 ], (...args) => {
@@ -77,7 +80,7 @@ for (let args of [
     }
 }
 
-console.log('')
+console.log('');
 
 
 /**
@@ -122,7 +125,7 @@ console.log('');
  * test `this` refer.
  */
 const testThis = match([
-    [[function (n) { console.log('pattern.n:', this); return Number.isInteger(n); }], function () { console.log('matched:', this); }],
+    [[function (n) { console.log('pattern.n:', this); return num(n); }], function () { console.log('matched:', this); }],
     [function (...args) { console.log('pattern.args:', this); return args.length > 1; }, () => { }],
 ], function () { console.log('else:', this) }).bind('ok');
 testThis(0);

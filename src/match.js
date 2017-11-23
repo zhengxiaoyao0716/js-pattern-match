@@ -4,7 +4,7 @@
 // };
 
 // const matchFns = (fns, elseFn) => function (...args) {
-//     const [_, fn] = fns.find(([pattern]) => matchPns.call(this, pattern, args)) || [, elseFn || (() => { throw new Error('no matched pattern.'); })];
+//     const [_, fn] = Array.find(fns, ([pattern]) => matchPns.call(this, pattern, args)) || [, elseFn || (() => { throw new Error('no matched pattern.'); })];
 //     return fn.apply(this, args);
 // }
 
@@ -18,7 +18,7 @@
 export default ((isArr, isFn, any, mPns) => (mFns => mFns([[[isArr], mFns], [[isArr, isFn], mFns], [[any, isArr], mPns]]))(
     (fns, elseFn) => function (...args) {
         return (
-            fns.find(([pattern]) => mPns.call(this, pattern, args)) || [, elseFn || (() => { throw new Error('no matched pattern.'); })]
+            Array.find(fns, ([pattern]) => mPns.call(this, pattern, args)) || [, elseFn || (() => { throw new Error('no matched pattern.'); })]
         )[1].apply(this, args);
     }
 ))(arr => arr instanceof Array, fn => fn instanceof Function, () => true, function (pattern, args) {
